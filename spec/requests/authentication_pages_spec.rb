@@ -43,6 +43,12 @@ describe "AuthenticationPages" do
         it { should have_link('Sign in') }
       end
     end	
+
+		describe "links for logged out users" do
+      let(:user) { FactoryGirl.create(:user) }
+			it { should_not have_selector('Profile', href: user_path(user)) }
+			it { should_not have_selector('Settings', href: edit_user_path(user)) }	
+		end
 	end
 	
 	describe "authorization" do
